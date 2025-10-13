@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>漸層</title>
+        <style>
+            div{
+                margin-bottom: 5px;
+
+            }
+            #d1 {
+                height: 100px;
+                width: 400px;
+                /* top right bottom left */
+                /* 0-300deg:degree 由上開始順時針方向 */
+                background: linear-gradient(120deg,red,yellow);
+            }
+            #d2 {
+                height: 100px;
+                width: 400px;
+                background: linear-gradient(120deg,red,yellow,orange,green,blue,indigo,violet);
+            }
+             #d3 {
+                height: 100px;
+                width: 400px;
+                background: linear-gradient(120deg,red,yellow 30%,blue);
+             }
+             #d4 {
+                height: 100px;
+                width: 400px;
+                background: linear-gradient(120deg,red,yellow 33%,yellow 66%,blue);
+             }
+
+        </style>
+    </head>
+    <body>
+        <div id="d1"></div>
+        <div id="d2"></div>
+        <div id="d3"></div>
+    </body>
+</html>
