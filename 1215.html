@@ -190,6 +190,20 @@
                 b.style.top=u.posY+"px";
                 b.move=setInterval(bullet_move,10,b);
             }
+            function show_ranking(){
+                var ranking=sessionStorage.getItem("ranking");
+                if(ranking){
+                var data=Array.from(JSON.parse(ranking));
+                }
+                
+                if(ranking==null){
+                    ranking=[];
+                    ranking.push({"name":pronpt("請輸入自己的名稱:"),"score":game_score,"time":game_timer})
+                }
+            }
+            function do_ranking(){
+
+            }
 
         </script>
     </head>
