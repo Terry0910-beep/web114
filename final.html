@@ -1,0 +1,25 @@
+<html>
+        <title>吃點點</title>
+        <script>
+            let ctx=c.getContext('2d'), p={x:300,y:200}, dots=[], startT, active=false,kets={};
+            window.onkeydown=e=>keys[e.key]=true; window.onkeyup=e=>keys[e.key]=false;
+
+            function start(){
+                p={x:300,y:200}; dots=[];active=true; startT=Date.now();
+                for(let i=0; i<20; i++) dots.push({x:Math.random()*580+10, y:Math.random()*380+10,vx:Math.random()*2-1, vy:Math.random()*2-1});
+                update();
+            }
+            function update(){
+                if(!active) return;
+                if(keys.ArrowUp) p.y -=4;if (keys.ArrowDown) p.y+=4;
+                if(keys.ArrowLeft) p.x -=4; if()
+            }
+        </script>
+         <body style="background:black; color:white; text-align:center;">
+            <div style="display:flex; justify-content:space-around; font-size:20px;">
+                <div id="b">最佳:--</div> <div id="t">秒數:0</div>
+            </div>
+            <button onclick="start()">開始遊戲</button><br>
+            <canvas id="c" width="600" height="400" style="background:#000; border:1px solid #fff;"></canvas>
+
+</html>
