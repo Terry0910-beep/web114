@@ -1,25 +1,56 @@
 <html>
-        <title>吃點點</title>
-        <script>
-            let ctx=c.getContext('2d'), p={x:300,y:200}, dots=[], startT, active=false,kets={};
-            window.onkeydown=e=>keys[e.key]=true; window.onkeyup=e=>keys[e.key]=false;
-
-            function start(){
-                p={x:300,y:200}; dots=[];active=true; startT=Date.now();
-                for(let i=0; i<20; i++) dots.push({x:Math.random()*580+10, y:Math.random()*380+10,vx:Math.random()*2-1, vy:Math.random()*2-1});
-                update();
+    <head>
+        <title>抽鬼牌遊戲</title>
+        <style>
+            .card{
+                width:100px;
+                height:140px;
+                line-height:140px;
+                background: gray;
+                color:white;
+                display: inline-block;
+                margin:10px;/*每張卡片的上下左右都會留出 $10\text{px}$ 的空間*/
+                font-size:40px;
+                cursor:pointer;/*「當滑鼠游標移動到這個元素上方時 將游標形狀變更為小手狀*/
+                border-radius: 10px;/*將元素的邊角（直角）修飾成圓角 圓角的半徑為 10 像素*/
             }
-            function update(){
-                if(!active) return;
-                if(keys.ArrowUp) p.y -=4;if (keys.ArrowDown) p.y+=4;
-                if(keys.ArrowLeft) p.x -=4; if()
+            .open{
+                background: white;
+                color:black;
+                border:2px solid gray;/*加上一個2 像素寬、實線、灰色的邊框*/
             }
-        </script>
-         <body style="background:black; color:white; text-align:center;">
-            <div style="display:flex; justify-content:space-around; font-size:20px;">
-                <div id="b">最佳:--</div> <div id="t">秒數:0</div>
-            </div>
-            <button onclick="start()">開始遊戲</button><br>
-            <canvas id="c" width="600" height="400" style="background:#000; border:1px solid #fff;"></canvas>
+        </style>
+    </head>
+    <body style="text-align: center; font-family: Arial;"><!--text-align: center;指字要水平置中 font-family: Arial;是設定字體為Arial這個長相-->
 
+        <h1>找鬼牌遊戲</h1>
+        <div id="0" class="card" onclick="play(0)">?</div>
+        <div id="1" class="card" onclick="play(1)">?</div>
+        <div id="2" class="card" onclick="play(2)">?</div>
+
+        <h2 id="message">抽到鬼牌就贏了!</h2>
+        <button onclick="location.reload()" style="padding:10px;">重新開始</button><!--style="padding: 10px;"就是讓按鈕內部的文字跟邊框之間有10像素的空間-->
+
+    <script>
+        let cards=["pic/g.png","pic/10.png","pic/66.png"]
+        function play(id){
+            cards.sort(()=>Math.random()-0.5);/*隨機洗牌*/
+            for(let i=0;i<3;i++){
+                let box=document.getElementById(i);
+                box.innerHTML=`<img src="${cards[i]}" width="100%">`;
+                box.classList.add("open");
+            }/*把牌掀開*/
+        
+            let result=document.getElementById("message");
+            if(cards[id]=="pic/g.png"){
+                result.innerText="恭喜!你抽到鬼牌了!";
+                result.style.color="green";/*讓字顯示成綠色*/
+            }
+            else{
+                result.innerText="沒抽到，再接再厲!";
+                result.style.color="red";
+            }
+        }
+    </script>
+    </body>
 </html>
