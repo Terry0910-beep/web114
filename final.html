@@ -5,11 +5,11 @@
             .card{
                 width:100px;
                 height:140px;
-                line-height:140px;
+                line-height:140px;/*讓問號待在整張卡片的正中央 */
                 background: gray;
                 color:white;
                 display: inline-block;
-                margin:10px;/*每張卡片的上下左右都會留出 $10\text{px}$ 的空間*/
+                margin:10px;/*每張卡片的上下左右都會留出 10像素 的空間*/
                 font-size:40px;
                 cursor:pointer;/*「當滑鼠游標移動到這個元素上方時 將游標形狀變更為小手狀*/
                 border-radius: 10px;/*將元素的邊角（直角）修飾成圓角 圓角的半徑為 10 像素*/
@@ -21,30 +21,30 @@
             }
         </style>
     </head>
-    <body style="text-align: center; font-family: Arial;"><!--text-align: center;指字要水平置中 font-family: Arial;是設定字體為Arial這個長相-->
+    <body style="text-align: center; font-family: Arial;"><!--text-align: center;指字要水平置中 align是用來讓字要靠左或靠右 font-family: Arial;是設定字體為Arial這個長相-->
 
         <h1>找鬼牌遊戲</h1>
         <div id="0" class="card" onclick="play(0)">?</div>
         <div id="1" class="card" onclick="play(1)">?</div>
-        <div id="2" class="card" onclick="play(2)">?</div>
+        <div id="2" class="card" onclick="play(2)">?</div> <!--要讓電腦知道哪張牌-->
 
         <h2 id="message">抽到鬼牌就贏了!</h2>
-        <button onclick="location.reload()" style="padding:10px;">重新開始</button><!--style="padding: 10px;"就是讓按鈕內部的文字跟邊框之間有10像素的空間-->
+        <button onclick="location.reload()" style="padding:10px;">重新開始</button><!--style="padding: 10px;"就是讓按鈕內部的文字跟邊框之間有10像素的空間  location.reload()就是按下這個按鍵就會等於按下F5的重新整理頁面-->
 
     <script>
         let cards=["pic/g.png","pic/10.png","pic/66.png"]
         function play(id){
-            cards.sort(()=>Math.random()-0.5);/*隨機洗牌*/
+            cards.sort(()=>Math.random()-0.5);/*隨機洗牌 就是那個Math那邊就是會隨機產生一個正負號 然後sort函數值就代表他會把元素 也就是剛剛的那三張牌在你點擊的那一刻打亂*/
             for(let i=0;i<3;i++){
                 let box=document.getElementById(i);
                 box.innerHTML=`<img src="${cards[i]}" width="100%">`;
                 box.classList.add("open");
-            }/*把牌掀開*/
+            }/*把牌掀開  for迴圈裡面的內容表示i有0 1 2 給getelementbyid用 width="100%代表要圖片填滿那格方塊 innerHTML是指這個標籤裡面的內容 `為反引號 用途是直接插入一個變數 document代表整張網頁 getElementById(i)代表透過這個id抓去要的元素*/
         
             let result=document.getElementById("message");
             if(cards[id]=="pic/g.png"){
                 result.innerText="恭喜!你抽到鬼牌了!";
-                result.style.color="green";/*讓字顯示成綠色*/
+                result.style.color="green";/*讓字顯示成綠色 innerText表示顯示出純文字內容*/
             }
             else{
                 result.innerText="沒抽到，再接再厲!";
